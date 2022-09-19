@@ -1,6 +1,6 @@
 # Breakout
 
-![Breakout screenshot](https://github.com/Razz67/Breakout/blob/master/images/breakout.png)
+![Breakout screenshot](https://github.com/Razz67/Breakout/blob/master/images/Screenshot%202022-09-19%20110545.png))
 
 # Link to github pages:  https://razz67.github.io/Breakout/
 
