@@ -22,5 +22,5 @@
 # Future Improvements
 ### change brick images on each different level
 ### Ask for confirmation before each level
-### Have a boss brick that you have to hit several times before destruction
+### Have a boss brick that you have to hit several times before winning the level
 ### Add tween to simulate bricks exploding
