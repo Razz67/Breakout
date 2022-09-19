@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="http://fonts.googleapis.com/css?family=Germania+One"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<script src="js/preload.js" defer></script>
+		<script src="js/breakout.js" defer></script>
+		<title>Breakout</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="sound">
+				<img src="images/sound.png" alt="sound on image" id="sound" />
+			</div>
+
+			<div id="gameover">
+				<img src="images/youwon.png" alt="won image" id="youwon" />
+				<img src="images/gameover.png" alt="game over image" id="youlose" />
+				<div id="restart">Play Again!</div>
+			</div>
+
+			<canvas id="canvas" width="400" height="500"></canvas>
+		</div>
+	</body>
+</html>
