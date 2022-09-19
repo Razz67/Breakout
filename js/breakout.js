@@ -9,7 +9,7 @@ const WIDTH = window.innerWidth;
 
 // Global variables
 const paddleWidth = 100;
-const paddleBottomMargin = 50;
+const paddleBottomMargin = 10;
 const paddleHeight = 20;
 const ballRadius = 8;
 let life = 3; // PLAYER HAS 3 LIVES
