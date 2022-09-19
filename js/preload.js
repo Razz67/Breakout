@@ -1,4 +1,4 @@
-
+// Images
 const backgroundImg = new Image();
 backgroundImg.src = "images/background.jpg";
 

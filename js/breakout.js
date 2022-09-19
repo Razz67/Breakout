@@ -6,32 +6,33 @@ canvas.style.border = "1px solid #0ff";
 let canvasMinX = 0;
 let canvasMaxX = 400;
 const WIDTH = window.innerWidth;
-// GAME VARIABLES AND CONSTANTS
+
+// Global variables
 const paddleWidth = 100;
-const PADDLE_MARGIN_BOTTOM = 50;
+const paddleBottomMargin = 50;
 const paddleHeight = 20;
-const BALL_RADIUS = 8;
-let LIFE = 3; // PLAYER HAS 3 LIVES
-let SCORE = 0;
+const ballRadius = 8;
+let life = 3; // PLAYER HAS 3 LIVES
+let score = 0;
 const scoreUnit = 10;
-let LEVEL = 1;
-const MAX_LEVEL = 3;
+let level = 1;
+const maxLevel = 3;
 let GAME_OVER = false;
 let leftArrow = false;
 let rightArrow = false;
 ctx.lineWidth = 3;
 
 
-// CREATE THE PADDLE
+// Create the paddle
 const paddle = {
 	x: canvas.width / 2 - paddleWidth / 2,
-	y: canvas.height - PADDLE_MARGIN_BOTTOM - paddleHeight,
+	y: canvas.height - paddleBottomMargin - paddleHeight,
 	width: paddleWidth,
 	height: paddleHeight,
 	dx: 5,
 };
 
-// DRAW PADDLE
+// draw paddle
 function drawPaddle() {
 	ctx.fillStyle = "#2e3548";
 	ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
@@ -40,7 +41,7 @@ function drawPaddle() {
 	ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 }
 
-// CONTROL THE PADDLE WITH ARROW KEYS
+// Use arrow keys to move the paddle
 document.addEventListener("keydown", function (event) {
 	if (event.key == 37) {
 		leftArrow = true;
@@ -56,9 +57,6 @@ document.addEventListener("keyup", function (event) {
 	}
 });
 
-
-document.addEventListener("mousemove", onMouseMove);
-
 // MOVE PADDLE
 function movePaddle() {
 	if (rightArrow && paddle.x + paddle.width < canvas.width) {
@@ -67,6 +65,12 @@ function movePaddle() {
 		paddle.x -= paddle.dx;
 	}
 }
+
+
+
+// Use mouse to move the paddle
+document.addEventListener("mousemove", onMouseMove);
+
 
 // Control paddle with mouse
 function onMouseMove(evt) {
@@ -81,8 +85,8 @@ function onMouseMove(evt) {
 // CREATE THE BALL
 const ball = {
 	x: canvas.width / 2,
-	y: paddle.y - BALL_RADIUS,
-	radius: BALL_RADIUS,
+	y: paddle.y - ballRadius,
+	radius: ballRadius,
 	speed: 4,
 	dx: 3 * (Math.random() * 2 - 1),
 	dy: -3,
@@ -118,7 +122,7 @@ function ballWallCollision() {
 	}
 
 	if (ball.y + ball.radius > canvas.height) {
-		LIFE--; // LOSE LIFE
+		life--; // LOSE life
 		lifeLost.play();
 		resetBall();
 	}
@@ -127,7 +131,7 @@ function ballWallCollision() {
 // RESET THE BALL
 function resetBall() {
 	ball.x = canvas.width / 2;
-	ball.y = paddle.y - BALL_RADIUS;
+	ball.y = paddle.y - ballRadius;
 	ball.dx = 3 * (Math.random() * 2 - 1);
 	ball.dy = -3;
 }
@@ -223,7 +227,7 @@ function ballBrickCollision() {
 					brickHit.play();
 					ball.dy = -ball.dy;
 					b.status = false; // the brick is broken
-					SCORE += scoreUnit;
+					score += scoreUnit;
 				}
 			}
 		}
@@ -247,14 +251,14 @@ function draw() {
 	drawBall();
 	drawBricks();
 
-	showGameStats(SCORE, 35, 25, scoreImg, 5, 5); // score
-	showGameStats(LIFE, canvas.width - 25, 25, lifeImg, canvas.width - 55, 5); // lives
-	showGameStats(LEVEL, canvas.width / 2, 25, levelImg, canvas.width / 2 - 30, 5); // level
+	showGameStats(score, 35, 25, scoreImg, 5, 5); // score
+	showGameStats(life, canvas.width - 25, 25, lifeImg, canvas.width - 55, 5); // lives
+	showGameStats(level, canvas.width / 2, 25, levelImg, canvas.width / 2 - 30, 5); // level
 }
 
 // game over function
 function gameOver() {
-	if (LIFE <= 0) {
+	if (life <= 0) {
 		showYouLose();
 		GAME_OVER = true;
 	}
@@ -274,7 +278,7 @@ function levelUp() {
 	if (isLevelDone) {
 		win.play();
 
-		if (LEVEL >= MAX_LEVEL) {
+		if (level >= maxLevel) {
 			showYouwin();
 			GAME_OVER = true;
 			return;
@@ -283,7 +287,7 @@ function levelUp() {
 		createBricks();
 		ball.speed += 0.5;
 		resetBall();
-		LEVEL++;
+		level++;
 	}
 }
 
