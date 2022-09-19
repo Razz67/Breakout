@@ -9,3 +9,6 @@
 # Level starts with one row of bricks
 # Knock out bricks to proceed to the next level
 # Complete the third level to win the game
+
+
+# Technologies used: HTML5 Canvas, JavaScript, CSS
