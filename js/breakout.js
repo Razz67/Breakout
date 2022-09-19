@@ -67,7 +67,6 @@ function movePaddle() {
 }
 
 
-
 // Use mouse to move the paddle
 document.addEventListener("mousemove", onMouseMove);
 
@@ -92,6 +91,7 @@ const ball = {
 	dy: -3,
 };
 
+
 // DRAW THE BALL
 function drawBall() {
 	ctx.beginPath();
@@ -101,13 +101,15 @@ function drawBall() {
 	ctx.strokeStyle = "#2e3548";
 	ctx.stroke();
 	ctx.closePath();
-}
+};
+
 
 // MOVE THE BALL
 function moveBall() {
 	ball.x += ball.dx;
 	ball.y += ball.dy;
-}
+};
+
 
 // BALL AND WALL COLLISION DETECTION
 function ballWallCollision() {
@@ -126,7 +128,8 @@ function ballWallCollision() {
 		lifeLost.play();
 		resetBall();
 	}
-}
+};
+
 
 // RESET THE BALL
 function resetBall() {
@@ -134,7 +137,7 @@ function resetBall() {
 	ball.y = paddle.y - ballRadius;
 	ball.dx = 3 * (Math.random() * 2 - 1);
 	ball.dy = -3;
-}
+};
 
 // BALL AND PADDLE COLLISION
 function ballPaddleCollision() {
@@ -159,7 +162,8 @@ function ballPaddleCollision() {
 		ball.dx = ball.speed * Math.sin(angle);
 		ball.dy = -ball.speed * Math.cos(angle);
 	}
-}
+};
+
 
 // CREATE THE BRICKS
 const brick = {
@@ -190,7 +194,8 @@ function createBricks() {
 			};
 		}
 	}
-}
+};
+
 
 createBricks();
 
@@ -209,7 +214,8 @@ function drawBricks() {
 			}
 		}
 	}
-}
+};
+
 
 // ball brick collision
 function ballBrickCollision() {
@@ -232,7 +238,9 @@ function ballBrickCollision() {
 			}
 		}
 	}
-}
+};
+
+
 
 // show game stats
 function showGameStats(text, textX, textY, img, imgX, imgY) {
@@ -243,7 +251,8 @@ function showGameStats(text, textX, textY, img, imgX, imgY) {
 
 	// draw image
 	ctx.drawImage(img, imgX, imgY, (width = 25), (height = 25));
-}
+};
+
 
 // DRAW FUNCTION
 function draw() {
@@ -254,7 +263,8 @@ function draw() {
 	showGameStats(score, 35, 25, scoreImg, 5, 5); // score
 	showGameStats(life, canvas.width - 25, 25, lifeImg, canvas.width - 55, 5); // lives
 	showGameStats(level, canvas.width / 2, 25, levelImg, canvas.width / 2 - 30, 5); // level
-}
+};
+
 
 // game over function
 function gameOver() {
@@ -262,7 +272,7 @@ function gameOver() {
 		showYouLose();
 		GAME_OVER = true;
 	}
-}
+};
 
 // Next level function
 function levelUp() {
@@ -289,7 +299,8 @@ function levelUp() {
 		resetBall();
 		level++;
 	}
-}
+};
+
 
 // UPDATE GAME FUNCTION
 function update() {
@@ -300,7 +311,7 @@ function update() {
 	ballBrickCollision();
 	gameOver();
 	levelUp();
-}
+};
 
 // GAME LOOP
 function loop() {
@@ -311,7 +322,7 @@ function loop() {
 	if (!GAME_OVER) {
 		requestAnimationFrame(loop);
 	}
-}
+};
 
 loop();
 
@@ -322,9 +333,9 @@ soundElement.addEventListener("click", audioManager); // turn sound on/off
 
 function audioManager() {
 	let imgSrc = soundElement.getAttribute("src"); // change the sound image when clicked
-	let SOUND_IMG =	imgSrc == "img/sound.png" ? "img/no-sound.png" : "images/sound.png";
+	let soundImg =	imgSrc == "images/sound.png" ? "images/no-sound.png" : "images/sound.png";
 
-	soundElement.setAttribute("src", SOUND_IMG);
+	soundElement.setAttribute("src", soundImg);
 
 	// MUTE AND UNMUTE SOUNDS
 	wallHit.muted = wallHit.muted ? false : true;
@@ -332,7 +343,8 @@ function audioManager() {
 	brickHit.muted = brickHit.muted ? false : true;
 	win.muted = win.muted ? false : true;
 	lifeLost.muted = lifeLost.muted ? false : true;
-}
+};
+
 
 // GAME OVER MESSAGE
 const gameover = document.getElementById("gameover");
@@ -345,14 +357,16 @@ restart.addEventListener("click", function () {
 	location.reload(); // reload the page
 });
 
+
 // YOU win
 function showYouwin() {
 	gameover.style.display = "block";
 	youwon.style.display = "block";
-}
+};
+
 
 // YOU LOSE
 function showYouLose() {
 	gameover.style.display = "block";
 	youlose.style.display = "block";
-}
+};

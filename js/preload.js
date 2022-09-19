@@ -1,6 +1,6 @@
 // Images
 const backgroundImg = new Image();
-backgroundImg.src = "images/background.jpg";
+backgroundImg.src = "images/background3.png";
 
 const levelImg = new Image();
 levelImg.src = "images/level.png";
