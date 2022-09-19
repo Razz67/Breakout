@@ -9,6 +9,7 @@
 ### Open in browser and mouseover the play area to begin
 ### Level starts with one row of bricks
 ### Knock out bricks to proceed to the next level
+### Each level adds a row of bricks
 ### Complete the third level to win the game
 
 
