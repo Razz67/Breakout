@@ -13,7 +13,7 @@ const paddleHeight = 20;
 const BALL_RADIUS = 8;
 let LIFE = 3; // PLAYER HAS 3 LIVES
 let SCORE = 0;
-const SCORE_UNIT = 10;
+const scoreUnit = 10;
 let LEVEL = 1;
 const MAX_LEVEL = 3;
 let GAME_OVER = false;
@@ -109,17 +109,17 @@ function moveBall() {
 function ballWallCollision() {
 	if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
 		ball.dx = -ball.dx;
-		WALL_HIT.play();
+		wallHit.play();
 	}
 
 	if (ball.y - ball.radius < 0) {
 		ball.dy = -ball.dy;
-		WALL_HIT.play();
+		wallHit.play();
 	}
 
 	if (ball.y + ball.radius > canvas.height) {
 		LIFE--; // LOSE LIFE
-		LIFE_LOST.play();
+		lifeLost.play();
 		resetBall();
 	}
 }
@@ -141,7 +141,7 @@ function ballPaddleCollision() {
 		ball.y > paddle.y
 	) {
 		// PLAY SOUND
-		PADDLE_HIT.play();
+		paddleHit.play();
 
 		// CHECK WHERE THE BALL HIT THE PADDLE
 		let collidePoint = ball.x - (paddle.x + paddle.width / 2);
@@ -220,10 +220,10 @@ function ballBrickCollision() {
 					ball.y + ball.radius > b.y &&
 					ball.y - ball.radius < b.y + brick.height
 				) {
-					BRICK_HIT.play();
+					brickHit.play();
 					ball.dy = -ball.dy;
 					b.status = false; // the brick is broken
-					SCORE += SCORE_UNIT;
+					SCORE += scoreUnit;
 				}
 			}
 		}
@@ -247,9 +247,9 @@ function draw() {
 	drawBall();
 	drawBricks();
 
-	showGameStats(SCORE, 35, 25, SCORE_IMG, 5, 5); // score
-	showGameStats(LIFE, canvas.width - 25, 25, LIFE_IMG, canvas.width - 55, 5); // lives
-	showGameStats(LEVEL, canvas.width / 2, 25, LEVEL_IMG, canvas.width / 2 - 30, 5); // level
+	showGameStats(SCORE, 35, 25, scoreImg, 5, 5); // score
+	showGameStats(LIFE, canvas.width - 25, 25, lifeImg, canvas.width - 55, 5); // lives
+	showGameStats(LEVEL, canvas.width / 2, 25, levelImg, canvas.width / 2 - 30, 5); // level
 }
 
 // game over function
@@ -272,10 +272,10 @@ function levelUp() {
 	}
 
 	if (isLevelDone) {
-		WIN.play();
+		win.play();
 
 		if (LEVEL >= MAX_LEVEL) {
-			showYouWin();
+			showYouwin();
 			GAME_OVER = true;
 			return;
 		}
@@ -301,7 +301,7 @@ function update() {
 // GAME LOOP
 function loop() {
 	// CLEAR THE CANVAS
-	ctx.drawImage(BG_IMG, 0, 0);
+	ctx.drawImage(backgroundImg, 0, 0);
 	draw();
 	update();
 	if (!GAME_OVER) {
@@ -323,11 +323,11 @@ function audioManager() {
 	soundElement.setAttribute("src", SOUND_IMG);
 
 	// MUTE AND UNMUTE SOUNDS
-	WALL_HIT.muted = WALL_HIT.muted ? false : true;
-	PADDLE_HIT.muted = PADDLE_HIT.muted ? false : true;
-	BRICK_HIT.muted = BRICK_HIT.muted ? false : true;
-	WIN.muted = WIN.muted ? false : true;
-	LIFE_LOST.muted = LIFE_LOST.muted ? false : true;
+	wallHit.muted = wallHit.muted ? false : true;
+	paddleHit.muted = paddleHit.muted ? false : true;
+	brickHit.muted = brickHit.muted ? false : true;
+	win.muted = win.muted ? false : true;
+	lifeLost.muted = lifeLost.muted ? false : true;
 }
 
 // GAME OVER MESSAGE
@@ -341,8 +341,8 @@ restart.addEventListener("click", function () {
 	location.reload(); // reload the page
 });
 
-// YOU WIN
-function showYouWin() {
+// YOU win
+function showYouwin() {
 	gameover.style.display = "block";
 	youwon.style.display = "block";
 }
