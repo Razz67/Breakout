@@ -1,3 +1,3 @@
 # Breakout
 
-![Breakout screenshot](C:\Users\srasb\OneDrive\Desktop\Perscholas\Breakout\images\breakout.png)
+![Breakout screenshot](https://github.com/Razz67/Breakout/blob/master/images/breakout.png)
