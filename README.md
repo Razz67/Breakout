@@ -18,3 +18,9 @@
 # Issues:
 ### Getting the paddle to move with the mousemeove event
 ### Changing levels
+
+# Future Improvements
+### change brick images on each different level
+### Ask for confirmation before each level
+### Have a boss brick that you have to hit several times before destruction
+### Add tween to simulate bricks exploding
